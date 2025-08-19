@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BusinessEntities;
+using Core.Services.Users;
+using System;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using BusinessEntities;
-using Core.Services.Users;
 using WebApi.Models.Users;
 
 namespace WebApi.Controllers
@@ -28,21 +29,65 @@ namespace WebApi.Controllers
         [HttpPost]
         public HttpResponseMessage CreateUser(Guid userId, [FromBody] UserModel model)
         {
-            var user = _createUserService.Create(userId, model.Name, model.Email, model.Type, model.AnnualSalary, model.Tags);
-            return Found(new UserData(user));
+            if (model == null || userId == Guid.Empty)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid data provided.");
+            }
+            try
+            {
+                // Check if a user with the same userId already exists
+                var existingUser = _getUserService.GetUser(userId);
+                if (existingUser != null)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.Conflict, $"This user with the userId:{userId} already exists.");
+                }
+                var user = _createUserService.Create(userId, model.Name, model.Email, model.Type, model.Age, model.AnnualSalary, model.Tags);
+                return Found(new UserData(user));
+            }
+            catch (ArgumentNullException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "An error occurred while creating the user", ex);
+            }
         }
 
         [Route("{userId:guid}/update")]
         [HttpPost]
         public HttpResponseMessage UpdateUser(Guid userId, [FromBody] UserModel model)
         {
-            var user = _getUserService.GetUser(userId);
-            if (user == null)
+            if (model == null || userId == Guid.Empty)
             {
-                return DoesNotExist();
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid data provided.");
             }
-            _updateUserService.Update(user, model.Name, model.Email, model.Type, model.AnnualSalary, model.Tags);
-            return Found(new UserData(user));
+            try
+            {
+                var user = _getUserService.GetUser(userId);
+                if (user == null)
+                {
+                    return DoesNotExist();
+                }
+                _updateUserService.Update(user, model.Name, model.Email, model.Type, model.Age, model.AnnualSalary, model.Tags);
+                return Found(new UserData(user));
+            }
+            catch (ArgumentNullException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "An error occurred while updating the user", ex);
+            }
         }
 
         [Route("{userId:guid}/delete")]
@@ -89,7 +134,20 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetUsersByTag(string tag)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var users = _getUserService.GetUsers(tag: tag);
+                return Found(users);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "An error occurred while updating the user", ex);
+            }
+
         }
     }
 }
