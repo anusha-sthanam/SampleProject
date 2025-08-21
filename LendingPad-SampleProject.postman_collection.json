@@ -1,0 +1,643 @@
+{
+	"info": {
+		"_postman_id": "39950efe-1ce4-454b-aa24-82d3ac19a929",
+		"name": "LendingPad-SampleProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47631442",
+		"_collection_link": "https://anushasthanam12-9995467.postman.co/workspace/Anusha-Sthanam's-Workspace~ec182e5d-6756-49e8-85bc-822926fa789c/collection/47631442-39950efe-1ce4-454b-aa24-82d3ac19a929?action=share&source=collection_link&creator=47631442"
+	},
+	"item": [
+		{
+			"name": "Initialize Sample Data",
+			"item": [
+				{
+					"name": "Clear Users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/clear",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"clear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User - John",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Smith\",\r\n    \"email\": \"mark@companya.com\",\r\n    \"type\": 2,\r\n    \"age\": 27,\r\n    \"annualSalary\": 72000,\r\n    \"tags\": [\"A\", \"C\", \"D\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/1422740e-6426-4c46-8445-3f5274a62424/create",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"1422740e-6426-4c46-8445-3f5274a62424",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User - Mark",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mark Williams\",\r\n    \"email\": \"mark@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 35,\r\n    \"annualSalary\": 120000,\r\n    \"tags\": [\"b\", \"c\", \"e\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/9422740e-6426-4c46-8445-3f5274a62424/create",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"9422740e-6426-4c46-8445-3f5274a62424",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User - Andy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Andy\",\r\n    \"email\": \"andy@companya.com\",\r\n    \"type\": 2,\r\n    \"age\": 34,\r\n    \"annualSalary\": 86000,\r\n    \"tags\": [\"D\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/8722740e-6426-4c46-8445-3f5274a62424/create",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"8722740e-6426-4c46-8445-3f5274a62424",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//The exception \"PUT attempted on document 'users/1422740e-6426-4c46-8445-3f5274a62424' using a non current etag\" means that the record with the same ID already exists.\r\n{\r\n    \"name\": \"Mary\",\r\n    \"email\": \"mary@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 29,\r\n    \"annualSalary\": 80000,\r\n    \"tags\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/1422740e-6426-4c46-8445-3f5274a62424/create",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"1422740e-6426-4c46-8445-3f5274a62424",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User - A",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mark Williams (updated)\",\r\n    \"email\": null,\r\n    \"type\": 2,\r\n    \"age\": 29,\r\n    \"annualSalary\": 80000,\r\n    \"tags\": [\"A\", \"C\", \"D\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/9422740e-6426-4c46-8445-3f5274a62424/update",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"9422740e-6426-4c46-8445-3f5274a62424",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User - B",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mark Williams\",\r\n    \"email\": \"mark@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 29,\r\n    \"annualSalary\": null,\r\n    \"tags\": [\"A\", \"C\", \"D\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/9422740e-6426-4c46-8445-3f5274a62424/update",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"9422740e-6426-4c46-8445-3f5274a62424",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User - C",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mark Williams\",\r\n    \"email\": \"mark@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 29,\r\n    \"annualSalary\": 152000,\r\n    \"tags\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/9422740e-6426-4c46-8445-3f5274a62424/update",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"9422740e-6426-4c46-8445-3f5274a62424",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users By Tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/list/tag?tag=C",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"list",
+								"tag"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "C"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Requests",
+			"item": [
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Create Product A",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n  \"name\": \"Product A\",\r\n  \"description\": \"A simple product A.\",\r\n  \"price\": 6.99,\r\n  \"quantity\": 20\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/products/{{product2}}/create",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"products",
+										"{{product2}}",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Product B",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n  \"name\": \"Product B\",\r\n  \"description\": \"A simple product B.\",\r\n  \"price\": 18.99,\r\n  \"quantity\": 200\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/products/{{product3}}/create",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"products",
+										"{{product3}}",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Product C",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n  \"name\": \"Product C\",\r\n  \"description\": \"A simple product C.\",\r\n  \"price\": 12,\r\n  \"quantity\": 25\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/products/{{product1}}/create",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"products",
+										"{{product1}}",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\n{\n  \"name\": \"Product C (Updated)\",\n  \"description\": \"A simple product C.\",\n  \"price\": 167,\n  \"quantity\": 27\n}"
+								},
+								"url": {
+									"raw": "{{baseURL}}/products/{{product1}}/update",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"products",
+										"{{product1}}",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/products/list",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"products",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product by Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/products/{{product1}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"products",
+										"{{product1}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/products/{{product2}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"products",
+										"{{product2}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Create Order 1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userOrderId\": \"{{user1}}\",\r\n  \"orderDate\": \"2025-08-21\",\r\n  \"userName\": \"Test user1\",\r\n  \"userEmail\": \"test@xyz.com\",\r\n  \"products\": {\r\n    \"{{product1}}\":4,\r\n    \"{{product2}}\":2\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/orders/{{order1}}/create",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"orders",
+										"{{order1}}",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Order 2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userOrderId\": \"{{user2}}\",\r\n  \"orderDate\": \"2025-08-21\",\r\n  \"userName\": \"Test user2\",\r\n  \"userEmail\": \"test@xyz.com\",\r\n  \"products\": {\r\n    \"{{product2}}\":4,\r\n    \"{{product3}}\":2\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/orders/{{order2}}/create",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"orders",
+										"{{order2}}",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"userOrderId\": \"{{user1}}\",\n  \"orderDate\": \"2025-08-21\",\n  \"userName\": \"Test user updated\",\n  \"userEmail\": \"test@xyz.com\",\n  \"products\": {\n    \"{{product1}}\":4,\n    \"{{product2}}\":2\n  }\n}"
+								},
+								"url": {
+									"raw": "{{baseURL}}/orders/{{order1}}/update",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"orders",
+										"{{order1}}",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Order by Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/orders/{{order2}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"orders",
+										"{{order2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Orders",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/orders/list",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"orders",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Order",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/orders/{{order2}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"orders",
+										"{{order2}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:49834"
+		},
+		{
+			"key": "product1",
+			"value": "1422740e-6426-4c46-8445-3f5274a62425"
+		},
+		{
+			"key": "product2",
+			"value": "1422740e-6426-4c46-8445-3f5274a62421"
+		},
+		{
+			"key": "user1",
+			"value": "1422740e-6426-4c46-8445-3f5274a62424"
+		},
+		{
+			"key": "product3",
+			"value": "1422740e-6426-4c46-8445-3f5274a62428"
+		},
+		{
+			"key": "order1",
+			"value": "80072dd2-7b23-4dc1-93d0-7fe9690a9dd4"
+		},
+		{
+			"key": "order2",
+			"value": "80072dd2-7b23-4dc1-93d0-7fe9690a9dd5"
+		},
+		{
+			"key": "order3",
+			"value": "80072dd2-7b23-4dc1-93d0-7fe9690a9dd6"
+		},
+		{
+			"key": "user2",
+			"value": "1422740e-6426-4c46-8445-3f5274a62480"
+		},
+		{
+			"key": "user3",
+			"value": "1422740e-6426-4c46-8445-3f5274a62489"
+		}
+	]
+}
