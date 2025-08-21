@@ -1,4 +1,5 @@
-﻿using Core.Services.Products;
+﻿using BusinessEntities;
+using Core.Services.Products;
 using System;
 using System.Linq;
 using System.Net;
@@ -96,7 +97,7 @@ namespace WebApi.Controllers
                 return DoesNotExist();
 
             _deleteProductService.Delete(product);
-            return Found();
+            return Found($"Product with {id} is deleted successfully");
         }
 
         [HttpGet]

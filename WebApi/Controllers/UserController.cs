@@ -100,7 +100,7 @@ namespace WebApi.Controllers
                 return DoesNotExist();
             }
             _deleteUserService.Delete(user);
-            return Found();
+            return Found($"User with userid {userId} is deleted successfully");
         }
 
         [Route("{userId:guid}")]
